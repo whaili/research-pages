@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>调研库 · Research</title>
+<meta name="description" content="技术调研报告，每篇一条问题链，讲清为什么演变成现在这样。">
+<style>
+:root{--ink:#1a1a1a;--muted:#66625c;--faint:#9a968e;--bg:#fdfcfa;--panel:#fff;
+ --line:#e8e4dc;--line2:#d9d4ca;--accent:#2b6cb0;--accent-soft:#eaf2fb;--code-bg:#f4f2ed}
+@media (prefers-color-scheme: dark){:root{--ink:#e9e7e2;--muted:#a5a29b;--faint:#7d7a74;
+ --bg:#171614;--panel:#1e1d1a;--line:#2f2d28;--line2:#3b3833;--accent:#7fb2e8;
+ --accent-soft:#1c2a3a;--code-bg:#252320}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Hiragino Sans GB","PingFang SC","Noto Sans CJK SC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ font-size:17px;line-height:1.75;letter-spacing:.012em;-webkit-font-smoothing:antialiased}
+.wrap{max-width:44rem;margin:0 auto;padding:5rem 1.5rem 6rem}
+.eyebrow{font-size:.7rem;letter-spacing:.16em;color:var(--faint);font-weight:600;margin-bottom:.8rem}
+h1{font-size:2.1rem;line-height:1.25;margin:0 0 1rem;letter-spacing:-.018em}
+.lede{color:var(--muted);margin:0 0 3.2rem;max-width:34rem}
+.list{list-style:none;margin:0;padding:0}
+.card{display:block;padding:1.5rem 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}
+.card:hover h2{color:var(--accent)}
+.card h2{margin:0 0 .5rem;font-size:1.2rem;line-height:1.45;font-weight:700;transition:color .15s}
+.card p{margin:0 0 .8rem;color:var(--muted);font-size:.94rem;line-height:1.65}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap;font-size:.78rem;color:var(--faint)}
+.tag{padding:.14rem .55rem;border-radius:.9rem;background:var(--accent-soft);color:var(--accent);font-weight:600}
+.foot{margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--faint)}
+@media print{body{font-size:11pt}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">RESEARCH NOTES</div>
+  <h1>调研库</h1>
+  <p class="lede">每篇只回答一条问题链：起点是真实需求，中间每个方案都是被上一个方案的缺陷逼出来的，终点是今天你在用的那套东西。</p>
+  <ul class="list">
+<li><a class="card" href="./oidc/"><h2>从一个登录需求，讲到 OIDC</h2><p>用一条问题链讲清 OAuth 2.0 与 OIDC：每个方案都是被上一个方案的缺陷逼出来的。</p><div class="tags"><span class="tag">OIDC</span><span class="tag">OAuth 2.0</span><span class="tag">身份认证</span><span>2026-11-13</span></div></a></li>
+  </ul>
+  <div class="foot">纯静态页，无脚本追踪。字体跟随系统，深浅色自适应。</div>
+</div>
+</body>
+</html>
