@@ -91,16 +91,12 @@ th,td{padding:.6rem .85rem; text-align:left; vertical-align:top; border-bottom:1
 th{background:var(--code-bg); font-weight:600; font-size:.82rem; color:var(--muted); white-space:nowrap}
 tbody tr:last-child td{border-bottom:none}
 
-/* 暗色模式下：插图是浅底截图，直接放进深色页面会很刺眼。
-   用滤镜把明暗翻转并轻微回拉对比，让插图与页面亮度接近；
-   灯箱里看的是原图（原样呈现，便于细细端详）。 */
+/* 暗色模式下的插图：不用滤镜反相，改成同一套绘图脚本渲染的深色版 PNG。
+   build_site.py 输出 <picture>，按 prefers-color-scheme 自动选图，
+   所以这里只需要处理边框，不需要对像素做任何变换。 */
 @media (prefers-color-scheme: dark){
-  figure img{
-    filter: invert(0.9) hue-rotate(180deg) saturate(0.9) brightness(0.94) contrast(0.94);
-    border-color: var(--line2);
-    background: transparent;
-  }
-  .lightbox img{ filter: none; }
+  figure img{ border-color: var(--line2); background: transparent; }
+  figure picture{ display: contents; }
 }
 
 /* 插图允许突破正文栏宽（最多 56rem）：用小字图也能看清，不必非得点开灯箱。
@@ -225,7 +221,7 @@ figcaption{font-size:.81rem; color:var(--faint); margin-top:.75rem; line-height:
   <main>
     <article>
       <div class="meta">
-        <span class="tag">OIDC · OAuth 2.0 · 身份认证</span><span>2026-11-13</span><span>·</span>
+        <span class="tag">OIDC · OAuth 2.0</span><span>2026-11-13</span><span>·</span>
         <span>约 47 分钟读完</span>
       </div>
       <h2 id="_1">先说清楚这篇怎么写的</h2>
@@ -244,7 +240,7 @@ figcaption{font-size:.81rem; color:var(--faint); margin-top:.75rem; line-height:
 <p>约定：每章开头抛问题，结尾一句话回答。<strong>前面出现的概念都在前面解释过</strong>；如果某处必须提前用一个词，我会当场用一句话说明它是什么，不指望你往后翻。</p>
 <p>只想拿结论的人，直接看第 8 章；想理解为什么，按顺序读。</p>
 <ul>
-<figure class="fig-wide"><img src="img/00_roadmap.png" alt="图 1｜本文路线：五个问题，五个答案" loading="lazy"><figcaption>图 1｜本文路线：五个问题，五个答案</figcaption></figure>
+<figure class="fig-wide"><picture><source media="(prefers-color-scheme: dark)" srcset="img/00_roadmap_dark.png"><img src="img/00_roadmap.png" alt="图 1｜本文路线：五个问题，五个答案" loading="lazy"></picture><figcaption>图 1｜本文路线：五个问题，五个答案</figcaption></figure>
 </ul>
 <hr>
 <h2 id="0">第 0 章 一个具体需求</h2>
@@ -321,7 +317,7 @@ figcaption{font-size:.81rem; color:var(--faint); margin-top:.75rem; line-height:
 <p>更关键的一点在后面：<strong>SAML 一开始就是奔着"认证"去的</strong>——它的产物就是"这个人是谁"。而 OAuth 走的是一条绕远的路：先解决"授权"（能做什么），认证是后来补上去的。</p>
 <p>这个顺序差异，解释了后面所有别扭的地方：为什么 OIDC 要用一个叫 scope 的参数来决定"这是不是认证请求"，为什么 ID Token 会和 access token 长得像但用途完全不同。<strong>因为认证是搭在授权框架上加盖的一层，而不是重写一遍。</strong></p>
 <ul>
-<figure class="fig-wide"><img src="img/02_flow.png" alt="图 2｜这条路走了二十年：每个标准都在补上一版的洞" loading="lazy"><figcaption>图 2｜这条路走了二十年：每个标准都在补上一版的洞</figcaption></figure>
+<figure class="fig-wide"><picture><source media="(prefers-color-scheme: dark)" srcset="img/02_flow_dark.png"><img src="img/02_flow.png" alt="图 2｜这条路走了二十年：每个标准都在补上一版的洞" loading="lazy"></picture><figcaption>图 2｜这条路走了二十年：每个标准都在补上一版的洞</figcaption></figure>
 </ul>
 <p>（图里会出现几个还没解释的名词——PKCE、ROPC、发送方约束。现在不用管它们，只要看出「每次都是补上一个的洞」就够了；它们分别在第 5 章出现。）</p>
 <hr>
@@ -410,7 +406,7 @@ figcaption{font-size:.81rem; color:var(--faint); margin-top:.75rem; line-height:
 <h3 id="25">2.5 把这一步摊开看</h3>
 <p>下面这张图把一次完整登录的九个动作按时间排开，标了每一步走哪条通道。</p>
 <ul>
-<figure class="fig-wide"><img src="img/03_timeline.png" alt="图 3｜授权码流程 + PKCE 的完整时序（第 5 章会解释 PKCE 那两个参数）" loading="lazy"><figcaption>图 3｜授权码流程 + PKCE 的完整时序（第 5 章会解释 PKCE 那两个参数）</figcaption></figure>
+<figure class="fig-wide"><picture><source media="(prefers-color-scheme: dark)" srcset="img/03_timeline_dark.png"><img src="img/03_timeline.png" alt="图 3｜授权码流程 + PKCE 的完整时序（第 5 章会解释 PKCE 那两个参数）" loading="lazy"></picture><figcaption>图 3｜授权码流程 + PKCE 的完整时序（第 5 章会解释 PKCE 那两个参数）</figcaption></figure>
 </ul>
 <p>按顺序读：</p>
 <p><strong>第 1 步（前端）</strong> 用户点了 A 系统的"用公司账号登录"。A 系统生成一个跳转地址，把浏览器送过去。这个地址里带着：我是谁（<code>client_id</code>）、我要什么（<code>scope</code>）、办完回哪（<code>redirect_uri</code>）、以及一个防伪标记（<code>state</code>）。</p>
@@ -780,7 +776,7 @@ figcaption{font-size:.81rem; color:var(--faint); margin-top:.75rem; line-height:
 </table></div>
 <p><strong>三者可以叠加，不能互相替代。</strong> 少一个就少一层防护。特别地，用 <code>nonce</code> 代替 PKCE 只有在"机密客户端 + 有其他额外防护"的条件下才被允许。</p>
 <ul>
-<figure class="fig-wide"><img src="img/04_defenses.png" alt="图 4｜三个参数各钉住什么" loading="lazy"><figcaption>图 4｜三个参数各钉住什么</figcaption></figure>
+<figure class="fig-wide"><picture><source media="(prefers-color-scheme: dark)" srcset="img/04_defenses_dark.png"><img src="img/04_defenses.png" alt="图 4｜三个参数各钉住什么" loading="lazy"></picture><figcaption>图 4｜三个参数各钉住什么</figcaption></figure>
 </ul>
 <h3 id="55">5.5 攻击四：回调地址被做手脚</h3>
 <p><strong>场景</strong>：应用登记的回调地址是 <code>https://legit.example.com/cb</code>。如果账号系统用"前缀匹配"来校验，攻击者可以注册 <code>https://legit.example.com.evil.com/cb</code>——它的前缀正好是合法地址。或者利用路径穿越：<code>https://legit.example.com/cb/../open</code>。授权码就被送到了攻击者那里。</p>
@@ -835,7 +831,7 @@ figcaption{font-size:.81rem; color:var(--faint); margin-top:.75rem; line-height:
 <p>做法是：浏览器里不存 token，只存一个 HttpOnly 的会话 cookie（页面脚本读不到）；真正的 token 存放在后端，前端通过自己的后端转发请求。</p>
 <p>这不是因为它完美——它引入了额外的后端、需要处理 CSRF、要管会话存储。而是因为<strong>其他选项都更差</strong>：只要 token 进了 JavaScript 的作用域，一个 XSS 就能把它带走，而你没有任何补救手段。</p>
 <ul>
-<figure class="fig-wide"><img src="img/05_tokens.png" alt="图 5｜三种令牌的职责对照" loading="lazy"><figcaption>图 5｜三种令牌的职责对照</figcaption></figure>
+<figure class="fig-wide"><picture><source media="(prefers-color-scheme: dark)" srcset="img/05_tokens_dark.png"><img src="img/05_tokens.png" alt="图 5｜三种令牌的职责对照" loading="lazy"></picture><figcaption>图 5｜三种令牌的职责对照</figcaption></figure>
 </ul>
 <h3 id="58">5.8 登出比想象中难</h3>
 <p>用户点"退出"，直觉是"把本地 cookie 删了就行"。不够。有三件事必须同时做：</p>
